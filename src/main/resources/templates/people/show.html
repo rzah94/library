@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <form class="col-8" action="" method="post" th:method="POST"  th:action="@{ /people/update/{id} (id = ${person.getId()} ) }" th:object="${person}">
+            <span th:text="${person.getName()} + ', ' + ${person.getYearOfBirthday()}" />
+
+            <div th:if="${books.isEmpty()}">
+                Человек пока не взял ни одной книги
+            </div>
+
+            <div th:if="${! books.isEmpty()}">
+                <div th:each="book : ${books}" th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', ' + ${book.getYear()}"/>
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>
